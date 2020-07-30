@@ -13,7 +13,7 @@ export class TemplateComponent implements OnInit {
     nombre: '',
     apellido: '',
     correo: '',
-    pais: 'CHL',
+    pais: '',
     genero: 'M'
   }
 
