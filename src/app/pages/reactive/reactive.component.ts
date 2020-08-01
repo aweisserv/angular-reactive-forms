@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 
 @Component({
@@ -21,6 +21,10 @@ export class ReactiveComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  get pasatiempos() {
+    return this.forma.get('pasatiempos') as FormArray;
   }
 
   get nombreNoValido(){
@@ -53,7 +57,8 @@ export class ReactiveComponent implements OnInit {
       direccion: this.fb.group({
         distrito: ['', Validators.required],
         ciudad  : ['', Validators.required]
-      })
+      }),
+      pasatiempos: this.fb.array([])
     });
 
   }
@@ -74,30 +79,38 @@ export class ReactiveComponent implements OnInit {
    }
 
 
-  guardar(){
+  agregarPasatiempo() {
+    this.pasatiempos.push( this.fb.control( '' ) );
+  }
+
+  borrarPasatiempo(i: number) {
+    this.pasatiempos.removeAt(i);
+  }
+
+
+  guardar() {
     console.log( this.forma );
 
     if ( this.forma.invalid ) {
 
       return Object.values( this.forma.controls ).forEach( control => {
-
-        if( control instanceof FormGroup ){
+        
+        if ( control instanceof FormGroup ) {
           Object.values( control.controls ).forEach( control => control.markAsTouched() );
         } else {
           control.markAsTouched();
         }
-
+        
+        
       });
-
+     
     }
 
-    //posteo de información
-    this.forma.reset(
-    /*  {
-        nombre: 'Sin nombre'
-      } */
-    );
-  }
+    // Posteo de información
+    //this.forma.reset({
+    //  nombre: 'Sin nombre'
+    //});
 
+  }
 
 }
