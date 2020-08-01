@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms'; //previene comportamiento clásico de formularios (refresh tras hacer clic en guardado).
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //previene comportamiento clásico de formularios (refresh tras hacer clic en guardado).
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { ReactiveComponent } from './pages/reactive/reactive.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
