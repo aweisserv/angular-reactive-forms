@@ -19,6 +19,7 @@ export class ReactiveComponent implements OnInit {
 
     this.crearFormulario();
     this.cargarDataAlFormulario();
+    this.crearListener();
 
    }
 
@@ -40,6 +41,10 @@ export class ReactiveComponent implements OnInit {
 
   get correoNoValido(){
     return this.forma.get('correo').invalid && this.forma.get('correo').touched
+  }
+
+  get usuarioNoValido(){
+    return this.forma.get('usuario').invalid && this.forma.get('usuario').touched
   }
 
   get distritoNoValido(){
@@ -67,17 +72,27 @@ export class ReactiveComponent implements OnInit {
       nombre:   [ '', [ Validators.required, Validators.minLength(3) ] ],
       apellido: [ '', [ Validators.required, this.validadores.noPalabra ] ],
       correo:   [ '', [ Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required ] ],
+      usuario:  [ '', , this.validadores.existeUsuario ] ,
       pass1:    [ '', Validators.required ],
       pass2:    [ '', Validators.required ],
       direccion: this.fb.group({
-        distrito: ['', Validators.required],
-        ciudad  : ['', Validators.required]
+        distrito: ['', Validators.required ],
+        ciudad  : ['', Validators.required ]
       }),
       pasatiempos: this.fb.array([])
     },{
       validators: this.validadores.passwordsIguales('pass1', 'pass2')
     });
 
+  }
+
+  crearListener() {
+  //  this.forma.valueChanges.subscribe( valor => {
+  //    console.log(valor);
+  //  });
+
+  //  this.forma.statusChanges.subscribe( status => console.log({ status }) );
+    this.forma.get('nombre').valueChanges.subscribe( console.log );
   }
 
   cargarDataAlFormulario(){
@@ -87,6 +102,8 @@ export class ReactiveComponent implements OnInit {
       nombre: "Allan",
       apellido: "Weisser",
       correo: "tuabue@tagua.cl",
+      pass1: "123",
+      pass2: "123",
       direccion: {
         distrito: "Ohana",
         ciudad: "Familia"
