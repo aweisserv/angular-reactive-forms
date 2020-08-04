@@ -42,7 +42,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Clone the repo
 - Install node package manager (npm)
 - Install Angular > npm install -g @angular/cli
-- Navigate with terminal to the cloned project folder > cd spoti-app
+- Navigate with terminal to the cloned project folder > cd angular-reactive-forms (by default)
 - Run Angular > ng serve --o (This process might take a few minutes depending on your hardware)
 - When the previous step is done, a new browser window will open with the App running
 
