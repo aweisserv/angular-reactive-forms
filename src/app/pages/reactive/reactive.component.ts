@@ -123,8 +123,7 @@ export class ReactiveComponent implements OnInit {
 
 
   guardar() {
-    console.log( this.forma );
-
+    
     if ( this.forma.invalid ) {
 
       return Object.values( this.forma.controls ).forEach( control => {
@@ -138,6 +137,8 @@ export class ReactiveComponent implements OnInit {
         
       });
      
+    } else {
+      console.log( this.forma );
     }
 
     // Posteo de información
